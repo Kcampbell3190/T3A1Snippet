@@ -1,0 +1,34 @@
+class Car { /*This is the object being delcared and waiting on some properties to be passed to it*/
+  constructor(brand) { /* This line of code is a constructor that is declaring a property titeld brand*/
+    this.carname = brand; /* this is setting the value of the instance and carname to equal of the brand*/
+  }
+  present() { /* here a function is being create for the object that is car*/
+    return 'I have a ' + this.carname; /* this is is returning a particular instance of the object carname by accessing the value this.carname and returning thr corresponding data*/
+  }
+} /* this is the end point for the chunk of code related to the object Car */
+
+class Model extends Car { /* What we have here is the Model which is a class in itself however, it is using the class Car as inheritance */
+  constructor(brand, mod) { /* Here we have the intialiser of the class which actually takes two arguments brand and mod */
+    super(brand); /* this is the code calling back to the Car for inheritance of the brand*/
+    this.model = mod; /* this is the addition of mod to the class Model by adding mod as a parameter */
+  }
+  show() {
+    return this.present() + ', it was made in ' + this.model; /* a return fucntion that is interloping the new Model .mod instance of the class */
+  }
+}
+
+let makes = ["Ford", "Holden", "Toyota"] /* here we have a variable called makes that is taking an array as a value. The array consists of three car brand names */
+let models = Array.from(new Array(40), (x,i) => i + 1980) /* this code is creating a new array that is is 39 elements in length. It takes the current value such as the date 2022 and 1980 as its range for paramaters */
+
+function randomIntFromInterval(min,max) { /* min and max included: This is a function that takes a min and max number. It then subtracts the max from the min and adds 1 plus the difference. the code then floors or rounds the number to a whole number and returns it. */
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+for (model of models) { /* this is a for loop that is going to loop through the variable model for models */
+
+  make = makes[randomIntFromInterval(0,makes.length-1)] /* this is going to randomly generate a number between 0 and the makes array length while subtracting 1 form the length. */
+  model = models[randomIntFromInterval(0,makes.length-1)] /* this is going to gerneate a number between 0 and the models array length while subtracting 1 form the length. */
+
+  mycar = new Model(make, model); /* this is a new instance of Model being declared as mycar. It is going to include two paramerters of make and model that have been generated through the previous functions */
+  console.log(mycar.show()) /* this will log the new car through the show function that returns "this.make + it was made in " + this.model" as a string */
+}
